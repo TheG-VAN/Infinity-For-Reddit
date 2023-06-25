@@ -11,7 +11,7 @@
         android:id="@+id/constraint_layout_item_post_detail_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <ml.docilealligator.infinityforreddit.customviews.AspectRatioGifImageView
             android:id="@+id/icon_gif_image_view_item_post_detail_text"
@@ -27,13 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:textSize="?attr/font_default"
             android:fontFamily="?attr/font_family"
-            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
+            android:textSize="?attr/font_default"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constrainedWidth="true" />
+            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/user_text_view_item_post_detail_text"
@@ -41,14 +41,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:textSize="?attr/font_default"
             android:fontFamily="?attr/font_family"
+            android:textSize="?attr/font_default"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@+id/author_flair_text_view_item_post_detail_text"
-            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
             app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/subreddit_text_view_item_post_detail_text"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constrainedWidth="true" />
+            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
+            app:layout_constraintTop_toBottomOf="@+id/subreddit_text_view_item_post_detail_text" />
 
         <TextView
             android:id="@+id/author_flair_text_view_item_post_detail_text"
@@ -56,28 +56,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:textSize="?attr/font_12"
             android:fontFamily="?attr/font_family"
+            android:textSize="?attr/font_12"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/user_text_view_item_post_detail_text"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/icon_gif_image_view_item_post_detail_text"
+            app:layout_constraintTop_toBottomOf="@+id/user_text_view_item_post_detail_text"
             tools:visibility="visible" />
 
         <TextView
             android:id="@+id/post_time_text_view_item_post_detail_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fontFamily="?attr/font_family"
             android:gravity="end"
             android:textSize="?attr/font_default"
-            android:fontFamily="?attr/font_family"
-            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline

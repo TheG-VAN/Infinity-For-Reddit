@@ -21,19 +21,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
             <ImageView
                 android:id="@+id/author_icon_image_view_item_post_comment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:visibility="gone"
-                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/barrier4"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/barrier4" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/author_text_view_item_post_comment"
@@ -42,33 +42,31 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:drawablePadding="4dp"
-                android:fontFamily="?attr/font_family"
-                android:textSize="?attr/font_default"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:fontFamily="?attr/font_family"
+                android:maxLines="1"
+                android:textSize="?attr/font_default"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@id/author_flair_text_view_item_post_comment"
-                app:layout_constraintStart_toEndOf="@id/author_icon_image_view_item_post_comment"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/barrier"
                 app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/author_icon_image_view_item_post_comment"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/author_flair_text_view_item_post_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:fontFamily="?attr/font_family"
+                android:maxLines="2"
                 android:textSize="?attr/font_12"
                 android:visibility="gone"
-                android:maxLines="2"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/author_icon_image_view_item_post_comment"
-                app:layout_constraintEnd_toStartOf="@+id/barrier"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/author_text_view_item_post_comment"
+                app:layout_constraintEnd_toStartOf="@+id/top_score_text_view_item_post_comment"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@+id/author_text_view_item_post_comment"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
             <TextView
@@ -129,20 +127,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="?attr/font_family"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:visibility="gone"
             android:textSize="?attr/font_default"
-            android:fontFamily="?attr/font_family"
+            android:visibility="gone"
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comment_markdown_view_item_post_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:nestedScrollingEnabled="false" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

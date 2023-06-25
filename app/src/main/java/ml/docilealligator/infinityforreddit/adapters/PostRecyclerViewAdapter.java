@@ -32,6 +32,7 @@ import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -696,7 +697,8 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                 }
 
                 if (mPostType == PostPagingSource.TYPE_SUBREDDIT && !mDisplaySubredditName && post.isStickied()) {
-                    ((PostBaseViewHolder) holder).stickiedPostImageView.setVisibility(View.VISIBLE);
+                    //((PostBaseViewHolder) holder).stickiedPostImageView.setVisibility(View.VISIBLE);
+                    ((PostBaseViewHolder) holder).titleTextView.setTextColor(mModeratorColor);
                     mGlide.load(R.drawable.ic_thumbtack_24dp).into(((PostBaseViewHolder) holder).stickiedPostImageView);
                 }
 
@@ -805,11 +807,13 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                     if (post.getPostType() == Post.VIDEO_TYPE) {
                         ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setVisibility(View.VISIBLE);
                         ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setImageDrawable(ContextCompat.getDrawable(mActivity, R.drawable.ic_play_circle_36dp));
+                        ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setColorFilter(0xFFFF7700);
                         ((PostWithPreviewTypeViewHolder) holder).typeTextView.setText(mActivity.getString(R.string.video));
                     } else if (post.getPostType() == Post.GIF_TYPE) {
                         if (!mAutoplay) {
                             ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setVisibility(View.VISIBLE);
                             ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setImageDrawable(ContextCompat.getDrawable(mActivity, R.drawable.ic_play_circle_36dp));
+                            ((PostWithPreviewTypeViewHolder) holder).videoOrGifIndicatorImageView.setColorFilter(0xFF0077FF);
                         }
                         ((PostWithPreviewTypeViewHolder) holder).typeTextView.setText(mActivity.getString(R.string.gif));
                     } else if (post.getPostType() == Post.IMAGE_TYPE) {
@@ -909,7 +913,7 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                     }
                 } else if (holder instanceof PostTextTypeViewHolder) {
                     if (!mHideTextPostContent && !post.isSpoiler() && post.getSelfTextPlainTrimmed() != null && !post.getSelfTextPlainTrimmed().equals("")) {
-                        ((PostTextTypeViewHolder) holder).contentTextView.setVisibility(View.VISIBLE);
+                        ((PostTextTypeViewHolder) holder).contentTextView.setVisibility(View.GONE);
                         if (post.isRead()) {
                             ((PostTextTypeViewHolder) holder).contentTextView.setTextColor(mReadPostContentColor);
                         }
@@ -2317,7 +2321,7 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
             scoreTextView.setTextColor(mPostIconAndInfoColor);
             downvoteButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
             commentsCountTextView.setTextColor(mPostIconAndInfoColor);
-            commentsCountTextView.setCompoundDrawablesWithIntrinsicBounds(mCommentIcon, null, null, null);
+            //commentsCountTextView.setCompoundDrawablesWithIntrinsicBounds(mCommentIcon, null, null, null);
             saveButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
             shareButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
 
@@ -3682,7 +3686,7 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
             scoreTextView.setTextColor(mPostIconAndInfoColor);
             downvoteButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
             commentsCountTextView.setTextColor(mPostIconAndInfoColor);
-            commentsCountTextView.setCompoundDrawablesWithIntrinsicBounds(mCommentIcon, null, null, null);
+            //commentsCountTextView.setCompoundDrawablesWithIntrinsicBounds(mCommentIcon, null, null, null);
             saveButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
             shareButton.setColorFilter(mPostIconAndInfoColor, android.graphics.PorterDuff.Mode.SRC_IN);
             divider.setBackgroundColor(mDividerColor);

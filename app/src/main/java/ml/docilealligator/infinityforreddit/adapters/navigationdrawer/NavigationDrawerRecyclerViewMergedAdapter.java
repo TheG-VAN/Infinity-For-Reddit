@@ -64,12 +64,12 @@ public class NavigationDrawerRecyclerViewMergedAdapter {
 
         mainPageConcatAdapter = new ConcatAdapter(
                 headerSectionRecyclerViewAdapter,
+                subscribedSubredditsRecyclerViewAdapter,
+                preferenceSectionRecyclerViewAdapter,
                 accountSectionRecyclerViewAdapter,
                 redditSectionRecyclerViewAdapter,
                 postSectionRecyclerViewAdapter,
-                preferenceSectionRecyclerViewAdapter,
-                favoriteSubscribedSubredditsSectionRecyclerViewAdapter,
-                subscribedSubredditsRecyclerViewAdapter);
+                favoriteSubscribedSubredditsSectionRecyclerViewAdapter);
     }
 
     public ConcatAdapter getConcatAdapter() {
@@ -90,12 +90,12 @@ public class NavigationDrawerRecyclerViewMergedAdapter {
     public void closeAccountSectionWithoutChangeIconResource() {
         mainPageConcatAdapter.removeAdapter(accountManagementSectionRecyclerViewAdapter);
 
+        mainPageConcatAdapter.addAdapter(subscribedSubredditsRecyclerViewAdapter);
+        mainPageConcatAdapter.addAdapter(preferenceSectionRecyclerViewAdapter);
         mainPageConcatAdapter.addAdapter(accountSectionRecyclerViewAdapter);
         mainPageConcatAdapter.addAdapter(redditSectionRecyclerViewAdapter);
         mainPageConcatAdapter.addAdapter(postSectionRecyclerViewAdapter);
-        mainPageConcatAdapter.addAdapter(preferenceSectionRecyclerViewAdapter);
         mainPageConcatAdapter.addAdapter(favoriteSubscribedSubredditsSectionRecyclerViewAdapter);
-        mainPageConcatAdapter.addAdapter(subscribedSubredditsRecyclerViewAdapter);
     }
 
     public void closeAccountSectionWithoutChangeIconResource(boolean checkIsInMainPage) {
