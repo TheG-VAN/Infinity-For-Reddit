@@ -102,14 +102,14 @@
             android:id="@+id/link_text_view_item_post_detail_no_preview_link"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="#33FFFFFF"
             android:fontFamily="?attr/font_family"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textSize="?attr/font_12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/post_time_text_view_item_post_detail_no_preview_link"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flowLayout5" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_no_preview_post_type_item_post_detail_no_preview_link" />
 
         <ImageView
             android:id="@+id/image_view_no_preview_post_type_item_post_detail_no_preview_link"
@@ -117,7 +117,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:scaleType="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/link_text_view_item_post_detail_no_preview_link"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/title_text_view_item_post_detail_no_preview_link"
             app:layout_constraintTop_toBottomOf="@+id/post_time_text_view_item_post_detail_no_preview_link" />
@@ -131,7 +131,7 @@
             app:flChildSpacingForLastRow="align"
             app:flRowSpacing="8dp"
             app:flRowVerticalGravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/link_text_view_item_post_detail_no_preview_link"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/post_time_text_view_item_post_detail_no_preview_link"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view_item_post_detail_no_preview_link">

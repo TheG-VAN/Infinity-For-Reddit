@@ -1,5 +1,6 @@
 package ml.docilealligator.infinityforreddit.customviews;
 
+import android.graphics.Paint;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,8 @@ public class CustomMarkwonAdapter extends MarkwonAdapter {
     private View.OnClickListener onClickListener;
     private View.OnLongClickListener onLongClickListener;
 
+    private View.OnTouchListener onTouchListener;
+
     @SuppressWarnings("WeakerAccess")
     CustomMarkwonAdapter(
             @NonNull SparseArray<Entry<Node, Holder>> entries,
@@ -55,6 +58,10 @@ public class CustomMarkwonAdapter extends MarkwonAdapter {
 
     public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
         this.onLongClickListener = onLongClickListener;
+    }
+
+    public void setOnTouchListener(View.OnTouchListener onTouchListener) {
+        this.onTouchListener = onTouchListener;
     }
 
     @NonNull
@@ -121,6 +128,7 @@ public class CustomMarkwonAdapter extends MarkwonAdapter {
         if (holder.itemView instanceof SpoilerOnClickTextView) {
             holder.itemView.setOnClickListener(onClickListener);
             holder.itemView.setOnLongClickListener(onLongClickListener);
+            holder.itemView.setOnTouchListener(onTouchListener);
         } else if (holder.itemView instanceof HorizontalScrollView) {
             TableLayout tableLayout = holder.itemView.findViewById(R.id.table_layout);
             if (tableLayout != null) {
@@ -131,6 +139,7 @@ public class CustomMarkwonAdapter extends MarkwonAdapter {
                             if (tableRow.getChildAt(j) instanceof TextView) {
                                 tableRow.getChildAt(j).setOnClickListener(onClickListener);
                                 tableRow.getChildAt(j).setOnLongClickListener(onLongClickListener);
+                                tableRow.getChildAt(j).setOnTouchListener(onTouchListener);
                             }
                         }
                     }

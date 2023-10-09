@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -2023,6 +2025,9 @@ public class PostDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         @BindView(R.id.share_button_item_post_detail_image_and_gif_autoplay)
         ImageView mShareButton;
 
+        @BindView(R.id.linear_layout_post_detail_image_and_gif_autoplay)
+        LinearLayout mLinearLayout;
+
         PostDetailImageAndGifAutoplayViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -2053,6 +2058,16 @@ public class PostDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
             mLoadImageProgressBar.setIndeterminateTintList(ColorStateList.valueOf(mColorAccent));
             mLoadImageErrorTextView.setTextColor(mPrimaryTextColor);
 
+            mImageView.setOnLongClickListener(view -> {
+                ViewGroup parent = (ViewGroup) mRelativeLayout.getParent();
+                parent.removeView(mRelativeLayout);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                mRelativeLayout.setLayoutParams(layoutParams);
+                mLinearLayout.addView(mRelativeLayout);
+                mLinearLayout.removeView(mBottomConstraintLayout);
+                mLinearLayout.addView(mBottomConstraintLayout);
+                return true;
+            });
             mImageView.setOnClickListener(view -> {
                 if (canStartActivity) {
                     canStartActivity = false;

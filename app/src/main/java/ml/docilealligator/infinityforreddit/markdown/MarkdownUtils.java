@@ -1,6 +1,7 @@
 package ml.docilealligator.infinityforreddit.markdown;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.util.Linkify;
 
 import androidx.annotation.NonNull;
@@ -8,8 +9,10 @@ import androidx.annotation.Nullable;
 
 import org.commonmark.ext.gfm.tables.TableBlock;
 
+import io.noties.markwon.AbstractMarkwonPlugin;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.MarkwonPlugin;
+import io.noties.markwon.core.MarkwonTheme;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.inlineparser.BangInlineProcessor;
 import io.noties.markwon.inlineparser.HtmlInlineProcessor;
@@ -48,6 +51,13 @@ public class MarkdownUtils {
                         .setOnLinkLongClickListener(onLinkLongClickListener)))
                 .usePlugin(LinkifyPlugin.create(Linkify.WEB_URLS))
                 .usePlugin(TableEntryPlugin.create(context))
+                .usePlugin(new AbstractMarkwonPlugin() {
+                    @Override
+                    public void configureTheme(@NonNull MarkwonTheme.Builder builder) {
+                        builder.blockQuoteColor(Color.CYAN);
+                        builder.headingBreakHeight(0);
+                    }
+                })
                 .build();
     }
 

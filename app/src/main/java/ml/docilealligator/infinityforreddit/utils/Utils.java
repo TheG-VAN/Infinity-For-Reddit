@@ -19,6 +19,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.TypefaceSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;

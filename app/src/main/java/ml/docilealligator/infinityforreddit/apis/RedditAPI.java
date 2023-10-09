@@ -124,6 +124,10 @@ public interface RedditAPI {
     Call<String> getPostAndCommentsByIdOauth(@Path("id") String id, @Query("sort") SortType.Type sortType,
                                              @HeaderMap Map<String, String> headers);
 
+    @GET("/comments/{id}.json?raw_json=1")
+    Call<String> getPostAndCommentsByIdOauth(@Path("id") String id, @Query("sort") SortType.Type sortType,
+                                             @HeaderMap Map<String, String> headers, @Query("limit") int limit);
+
     @GET("/comments/{id}/placeholder/{singleCommentId}.json?raw_json=1")
     Call<String> getPostAndCommentsSingleThreadById(@Path("id") String id, @Path("singleCommentId") String singleCommentId,
                                                     @Query("sort") SortType.Type sortType, @Query("context") String contextNumber);

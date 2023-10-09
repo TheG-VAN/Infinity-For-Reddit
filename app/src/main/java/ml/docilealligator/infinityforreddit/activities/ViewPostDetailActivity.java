@@ -308,7 +308,7 @@ public class ViewPostDetailActivity extends BaseActivity implements SortTypeSele
     }
 
     public void showFab() {
-        fab.show();
+        fab.hide();
     }
 
     public void hideFab() {

@@ -269,6 +269,8 @@ public class PostFragment extends Fragment implements FragmentCommunicator {
     private Map<String, String> subredditOrUserIcons = new HashMap<>();
     private String accessToken;
 
+    private boolean changingSort = false;
+
     public PostFragment() {
         // Required empty public constructor
     }
@@ -1284,6 +1286,10 @@ public class PostFragment extends Fragment implements FragmentCommunicator {
                     noPostFound();
                 } else {
                     hasPost = true;
+                    if (changingSort) {
+                        goBackToTop();
+                        changingSort = false;
+                    }
                 }
             } else if (refreshLoadState instanceof LoadState.Error) {
                 mFetchPostInfoLinearLayout.setOnClickListener(view -> refresh());
@@ -1413,7 +1419,7 @@ public class PostFragment extends Fragment implements FragmentCommunicator {
             }
             this.sortType = sortType;
             mPostViewModel.changeSortType(sortType);
-            goBackToTop();
+            changingSort = true;
         }
     }
 

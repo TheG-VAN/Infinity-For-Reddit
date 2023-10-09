@@ -832,7 +832,7 @@ public class ViewPostDetailFragment extends Fragment implements FragmentCommunic
                     .apply();
             return SortType.Type.CONFIDENCE;
         }
-        return SortType.Type.valueOf(sortTypeName);
+        return SortType.Type.TOP;
     }
 
     public void goToTop() {
@@ -1154,6 +1154,14 @@ public class ViewPostDetailFragment extends Fragment implements FragmentCommunic
             intent.putExtra(PostFilterPreferenceActivity.EXTRA_POST, mPost);
             startActivity(intent);
             return true;
+        } else if (itemId == R.id.action_collapse_all_view_post_detail_fragment) {
+            try {
+                int i = -1;
+                while (++i == i) {
+                    mCommentsAdapter.collapseChildren(i);
+                }
+            } catch (IndexOutOfBoundsException ignored) {
+            }
         }
         return false;
     }

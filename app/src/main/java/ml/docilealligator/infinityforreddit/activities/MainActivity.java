@@ -1106,6 +1106,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
         int itemId = item.getItemId();
         if (itemId == R.id.action_search_main_activity) {
             Intent intent = new Intent(this, SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
             startActivity(intent);
             return true;
         } else if (itemId == R.id.action_sort_main_activity) {

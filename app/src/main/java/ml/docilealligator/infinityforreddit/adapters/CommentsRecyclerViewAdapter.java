@@ -1,5 +1,7 @@
 package ml.docilealligator.infinityforreddit.adapters;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -10,8 +12,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -837,7 +842,7 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    private void collapseChildren(int position) {
+    public void collapseChildren(int position) {
         mVisibleComments.get(position).setExpanded(false);
         int depth = mVisibleComments.get(position).getDepth();
         int allChildrenSize = 0;
@@ -1319,7 +1324,7 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             saveButton.setColorFilter(mCommentIconAndInfoColor, PorterDuff.Mode.SRC_IN);
             replyButton.setColorFilter(mCommentIconAndInfoColor, PorterDuff.Mode.SRC_IN);
 
-            authorFlairTextView.setOnClickListener(view -> authorTextView.performClick());
+            //authorFlairTextView.setOnClickListener(view -> authorTextView.performClick());
 
             editedTextView.setOnClickListener(view -> {
                 Comment comment = getCurrentComment(this);
@@ -1704,6 +1709,22 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                     expandComments();
                     return true;
                 });
+                final long[] time = {System.currentTimeMillis()};
+                View.OnTouchListener onTouchListener = (view, e) -> {
+                    if (e.getAction() == MotionEvent.ACTION_DOWN) {
+                        if (System.currentTimeMillis() - time[0] < 250) {
+                            moreButton.performClick();
+                        }
+                        time[0] = System.currentTimeMillis();
+                        ObjectAnimator colorFade = ObjectAnimator.ofObject(linearLayout, "backgroundColor", new ArgbEvaluator(), 0x33FFFFFF, 0x00FFFFFF);
+                        colorFade.setDuration(500);
+                        colorFade.start();
+                    }
+                    view.performClick();
+                    return false;
+                };
+                mMarkwonAdapter.setOnTouchListener(onTouchListener);
+                itemView.setOnTouchListener(onTouchListener);
             }
         }
 
