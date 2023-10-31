@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.URLUtil;
 import android.widget.Toast;
 
@@ -17,6 +18,9 @@ import androidx.browser.customtabs.CustomTabsService;
 
 import org.apache.commons.io.FilenameUtils;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +56,7 @@ public class LinkResolverActivity extends AppCompatActivity {
     private static final String WIKI_PATTERN = "/[rR]/[\\w-]+/(wiki|w)(?:/[\\w-]+)*";
     private static final String GOOGLE_AMP_PATTERN = "/amp/s/amp.reddit.com/.*";
     private static final String STREAMABLE_PATTERN = "/\\w+/?";
+    private static final String SHARE_PATTERN = "/r/[\\w-]+/s/\\w+";
 
     @Inject
     @Named("default")
@@ -251,6 +256,27 @@ public class LinkResolverActivity extends AppCompatActivity {
                                 Intent intent = new Intent(this, ViewPostDetailActivity.class);
                                 intent.putExtra(ViewPostDetailActivity.EXTRA_POST_ID, path.substring(1));
                                 startActivity(intent);
+                            } else if (path.matches(SHARE_PATTERN)) {
+                                String finalPath = path;
+                                String[] loc = new String[1];
+                                Thread thread = new Thread(() -> {
+                                    try {
+                                        HttpURLConnection con = (HttpURLConnection) (new URL(getRedditUriByPath(finalPath).toString()).openConnection());
+                                        con.setInstanceFollowRedirects(false);
+                                        con.connect();
+                                        loc[0] = con.getHeaderField("Location");
+                                    } catch (
+                                            IOException e) {
+                                        deepLinkError(uri);
+                                    }
+                                });
+                                thread.start();
+                                try {
+                                    thread.join();
+                                    handleUri(Uri.parse(loc[0]));
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
                             } else {
                                 deepLinkError(uri);
                             }
