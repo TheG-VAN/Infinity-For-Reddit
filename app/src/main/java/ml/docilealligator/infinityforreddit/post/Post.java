@@ -79,6 +79,7 @@ public class Post implements Parcelable {
     private String crosspostParentId;
     private String distinguished;
     private String suggestedSort;
+    private String mp4Variant;
     private ArrayList<Preview> previews = new ArrayList<>();
     private ArrayList<Gallery> gallery = new ArrayList<>();
 
@@ -206,6 +207,7 @@ public class Post implements Parcelable {
         crosspostParentId = in.readString();
         distinguished = in.readString();
         suggestedSort = in.readString();
+        mp4Variant = in.readString();
         in.readTypedList(previews, Preview.CREATOR);
         in.readTypedList(gallery, Gallery.CREATOR);
     }
@@ -596,8 +598,17 @@ public class Post implements Parcelable {
         parcel.writeString(crosspostParentId);
         parcel.writeString(distinguished);
         parcel.writeString(suggestedSort);
+        parcel.writeString(mp4Variant);
         parcel.writeTypedList(previews);
         parcel.writeTypedList(gallery);
+    }
+
+    public String getMp4Variant() {
+        return mp4Variant;
+    }
+
+    public void setMp4Variant(String mp4Variant) {
+        this.mp4Variant = mp4Variant;
     }
 
     @Override

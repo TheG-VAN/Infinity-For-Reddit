@@ -103,7 +103,7 @@ public class DownloadRedditVideoService extends Service {
             String audioUrlPrefix = Build.VERSION.SDK_INT > Build.VERSION_CODES.N ? videoUrl.substring(0, videoUrl.lastIndexOf('/')) : null;
 
             String subredditName = intent.getString(EXTRA_SUBREDDIT);
-            String fileNameWithoutExtension = subredditName + "-" + intent.getString(EXTRA_POST_ID);
+            String fileNameWithoutExtension = "video" + intent.getString(EXTRA_POST_ID);
             boolean isNsfw = intent.getBoolean(EXTRA_IS_NSFW, false);
             int randomNotificationIdOffset = msg.arg1;
 
@@ -555,8 +555,7 @@ public class DownloadRedditVideoService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         builder = new NotificationCompat.Builder(DownloadRedditVideoService.this, NotificationUtils.CHANNEL_ID_DOWNLOAD_REDDIT_VIDEO);
 
-        String subredditName = intent.getStringExtra(EXTRA_SUBREDDIT);
-        String fileNameWithoutExtension = subredditName + "-" + intent.getStringExtra(EXTRA_POST_ID);
+        String fileNameWithoutExtension = "video" + intent.getStringExtra(EXTRA_POST_ID);
 
         NotificationChannelCompat serviceChannel =
                 new NotificationChannelCompat.Builder(
