@@ -1,3 +1,5 @@
+Note: This is a fork of [Infinity For Reddit](https://github.com/Docile-Alligator/Infinity-For-Reddit). It has some layout changes and a couple of minor additional features.
+
 <h1 align="center">
   Infinity For Reddit <a href="https://www.patreon.com/docile_alligator"><img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon"></a>
   
